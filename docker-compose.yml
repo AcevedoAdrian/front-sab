@@ -1,0 +1,16 @@
+
+services:
+  app:
+    build: .
+    container_name: my_react_app_container
+    volumes:
+      - .:/usr/src/app:cached
+      - /usr/src/app/node_modules
+    ports:
+      - "4000:5173"
+    environment:
+      - NODE_ENV=development
+    command: ["npm", "run", "dev"]
+
+volumes:
+  node_modules:
