@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true, // Esto permite que Vite escuche en todas las interfaces
-    port: 5173
+    port: 5173,
+    watch: {
+      usePolling: true, // Soluciona problemas de hot reload en sistemas de archivos compartidos
+    },
   }
 })
