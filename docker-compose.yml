@@ -1,14 +1,21 @@
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        EMAIL: ${EMAIL}
+        NAME: ${NAME}
     container_name: front-sab
     volumes:
       - .:/usr/src/app:cached
       - /usr/src/app/node_modules
+
     ports:
       - "4000:5173"
     environment:
       - NODE_ENV=development
+      - EMAIL=${EMAIL}
+      - NAME=${NAME}
     command: [ "npm", "run", "dev" ]
 
 volumes:

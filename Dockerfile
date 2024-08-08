@@ -1,14 +1,24 @@
 # Usar una imagen base de Node
 FROM node:20-alpine
 
+ARG EMAIL
+ARG NAME
+
+# Actualizar el sistema e instala git
+RUN apk update && apk upgrade  && apk add git
+
+
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /usr/src/app
 
+# Configurar git dentro del contenedor, para que no haya problemas al hacer push, pull, etc. Con v
+RUN git config --global user.email "$EMAIL" && git config --global user.name "$NAME"
+RUN git config --global --add safe.directory /usr/src/app
 # Copiar package.json y package-lock.json
 COPY package*.json ./
 
 # Instalar dependencias
-RUN npm install
+RUN npm install -D 
 
 # Copiar el resto del código de la aplicación
 COPY . .
