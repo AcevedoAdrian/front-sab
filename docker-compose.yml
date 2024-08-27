@@ -1,8 +1,7 @@
-
 services:
   app:
     build: .
-    container_name: my_react_app_container
+    container_name: front-sab
     volumes:
       - .:/usr/src/app:cached
       - /usr/src/app/node_modules
@@ -10,7 +9,7 @@ services:
       - "4000:5173"
     environment:
       - NODE_ENV=development
-    command: ["npm", "run", "dev"]
+    command: [ "npm", "run", "dev" ]
 
 volumes:
   node_modules:
